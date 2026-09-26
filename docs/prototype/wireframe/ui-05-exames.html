@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-05 — Exames (wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+</head>
+<body data-tela="UI-05" data-tela-nome="Exames">
+
+  <header class="topo">
+    <div class="topo__marca">Painel de Indicadores de Saúde</div>
+    <div class="topo__usuario">
+      <span>Ana Souza — Gestor</span>
+      <span class="topo__papel">Gestor</span>
+      <a class="topo__link" href="ui-01-login.html">Sair</a>
+    </div>
+  </header>
+
+  <nav class="navegacao" aria-label="Indicadores">
+    <a href="ui-02-painel.html">Painel</a>
+    <a href="ui-03-atendimentos.html">Atendimentos</a>
+    <a href="ui-04-consultas.html">Consultas</a>
+    <a href="ui-05-exames.html" aria-current="page">Exames</a>
+    <a href="ui-06-produtividade.html">Produtividade</a>
+    <a href="ui-07-faturamento-convenios.html">Fatura. convênios</a>
+    <a href="ui-08-faturamento-particular.html">Fatura. particular</a>
+    <a href="ui-09-despesas.html">Despesas</a>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="badge-demo" data-rn="RN-02">
+      <span class="badge-demo__tag">Demo</span>
+      Dados demonstrativos — regras reais pendentes de validação
+    </div>
+
+    <h1 class="cabecalho-secao">Exames</h1>
+    <p class="descricao-secao">Volume de exames no período, com recortes por sexo, convênio e médico.</p>
+
+    <!-- ============ ESTADO: default ============ -->
+    <div data-estado="default">
+
+      <section class="painel" data-rn="RN-07">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de">De</label><input id="de" type="date" value="2025-10-01"></div>
+          <div class="campo"><label for="ate">Até</label><input id="ate" type="date" value="2026-09-30"></div>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="button">Últimos 12 meses</button>
+            <button class="botao" type="button">Aplicar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="painel" id="filtros" data-rn="RN-28">
+        <p class="painel__titulo">Filtros de categoria</p>
+        <div class="filtros">
+          <div class="campo">
+            <label for="sexo">Sexo</label>
+            <select id="sexo"><option selected>Todos</option><option>Feminino</option><option>Masculino</option></select>
+          </div>
+          <div class="campo">
+            <label for="convenio">Convênio</label>
+            <select id="convenio"><option selected>Todos</option><option>Unimed</option><option>Bradesco Saúde</option><option>SulAmérica</option><option>Amil</option></select>
+          </div>
+          <div class="campo">
+            <label for="medico">Médico</label>
+            <select id="medico"><option selected>Todos</option><option>Dra. Marina Alves</option><option>Dr. Rafael Nunes</option><option>Dra. Patrícia Lima</option></select>
+            <span class="campo__nota">Atribuição semântica [PENDENTE]</span>
+          </div>
+          <div class="campo">
+            <label for="agrupar">Agrupar por</label>
+            <select id="agrupar"><option>Sexo</option><option selected>Convênio</option><option>Médico</option></select>
+          </div>
+          <div class="botoes"><button class="botao" type="button">Aplicar filtros</button></div>
+        </div>
+        <div class="anotacao">
+          <span class="anotacao__tag">decisão registrada</span>
+          O rótulo é <strong>“Médico”</strong>, sem qualificador de função. <span class="lista-rn">RN-28</span> diz “por
+          médico” e não especifica solicitante, executor, responsável ou outra função — essa atribuição permanece
+          <span class="lista-rn">[PENDENTE]</span> para a Etapa 2.
+          <br><br>
+          Na Etapa 1, o filtro agrupa pelo atributo <code>medico</code> da entidade demonstrativa
+          <code>Exame</code>, por coincidência de nomenclatura com a palavra usada em <span class="lista-rn">RN-28</span>.
+          O atributo <code>medicoSolicitante</code> existe no conjunto demonstrativo e fica <strong>sem uso</strong>,
+          reservado para quando a semântica for descoberta. Nenhuma das duas colunas representa a semântica real:
+          <span class="lista-rn">RN-04</span> proíbe preenchê-la por suposição.
+        </div>
+      </section>
+
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador" data-rn="RN-27">
+          <span class="card__rotulo">Total de exames</span>
+          <span class="card__valor">24.377</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--positivo">+9,1%</span>
+            <span class="variacao variacao--neutro">+2.035</span>
+          </div>
+          <span class="card__link" style="color:var(--wf-texto-suave)">Anterior: 22.342</span>
+        </article>
+      </div>
+
+      <div class="grade grade--larga" style="margin-top:12px">
+        <section class="grafico">
+          <p class="grafico__titulo">Evolução de exames por mês</p>
+          <p class="grafico__sub">Período 2025-10 a 2026-09 · 12 pontos</p>
+          <div class="grafico__regiao" aria-hidden="true">
+            <div class="grafico__barra" style="height:48%"></div>
+            <div class="grafico__barra" style="height:53%"></div>
+            <div class="grafico__barra" style="height:50%"></div>
+            <div class="grafico__barra" style="height:60%"></div>
+            <div class="grafico__barra" style="height:57%"></div>
+            <div class="grafico__barra" style="height:64%"></div>
+            <div class="grafico__barra" style="height:70%"></div>
+            <div class="grafico__barra" style="height:66%"></div>
+            <div class="grafico__barra" style="height:74%"></div>
+            <div class="grafico__barra" style="height:79%"></div>
+            <div class="grafico__barra" style="height:76%"></div>
+            <div class="grafico__barra" style="height:85%"></div>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico de linha — Chart.js local (ADR-006)</p>
+        </section>
+
+        <section class="grafico">
+          <p class="grafico__titulo">Distribuição por convênio</p>
+          <p class="grafico__sub">Mesmo recorte do card total</p>
+          <div class="grafico__donut">
+            <div class="grafico__rosca" aria-hidden="true"></div>
+            <ul class="grafico__legenda">
+              <li>Unimed — 11.213</li>
+              <li>Bradesco — 6.826</li>
+              <li>SulAmérica — 4.144</li>
+              <li>Amil — 2.194</li>
+            </ul>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico donut</p>
+        </section>
+      </div>
+
+      <h2 class="cabecalho-secao">Detalhamento</h2>
+      <div class="painel" style="padding:0">
+        <table class="tabela">
+          <thead><tr><th>Convênio</th><th class="num">Período atual</th><th class="num">Período anterior</th><th class="num">Variação %</th><th class="num">Variação abs.</th></tr></thead>
+          <tbody>
+            <tr><td>Unimed</td><td class="num">11.213</td><td class="num">10.204</td><td class="num">+9,9%</td><td class="num">+1.009</td></tr>
+            <tr><td>Bradesco Saúde</td><td class="num">6.826</td><td class="num">6.271</td><td class="num">+8,9%</td><td class="num">+555</td></tr>
+            <tr><td>SulAmérica</td><td class="num">4.144</td><td class="num">3.812</td><td class="num">+8,7%</td><td class="num">+332</td></tr>
+            <tr><td>Amil</td><td class="num">2.194</td><td class="num">2.055</td><td class="num">+6,8%</td><td class="num">+139</td></tr>
+          </tbody>
+          <tfoot><tr><td>Total</td><td class="num">24.377</td><td class="num">22.342</td><td class="num">+9,1%</td><td class="num">+2.035</td></tr></tfoot>
+        </table>
+      </div>
+
+      <div class="aviso aviso--info">
+        <span class="aviso__titulo">O que conta como exame ainda é pendente.</span>
+        A contagem demonstrativa soma registros de exame do seed, sem distinguir solicitado de realizado, porque essa
+        distinção não é conhecida. <span class="lista-rn">(RN-29 — PENDENTE)</span>
+      </div>
+
+    </div>
+
+    <!-- ============ ESTADO: carregando ============ -->
+    <div data-estado="carregando">
+      <section class="painel"><div class="esqueleto esqueleto--linha" style="width:260px"></div></section>
+      <section class="painel"><div class="esqueleto esqueleto--linha" style="width:200px"></div><div class="esqueleto esqueleto--linha" style="width:520px"></div></section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+      </div>
+      <div class="grade grade--larga" style="margin-top:12px">
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: vazio ============ -->
+    <div data-estado="vazio">
+      <section class="painel">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de-v">De</label><input id="de-v" type="date" value="2019-01-01"></div>
+          <div class="campo"><label for="ate-v">Até</label><input id="ate-v" type="date" value="2019-01-31"></div>
+          <div class="botoes"><button class="botao" type="button">Aplicar</button></div>
+        </div>
+      </section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador"><span class="card__rotulo">Total de exames</span><span class="card__valor">0</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></article>
+      </div>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhum exame no período</p>
+        <p class="estado-bloco__texto">O conjunto demonstrativo não tem registros entre 01/01/2019 e 31/01/2019.</p>
+        <button class="botao botao--secundario" type="button">Voltar para os últimos 12 meses</button>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: vazioFiltro ============ -->
+    <div data-estado="vazioFiltro">
+      <section class="painel" data-rn="RN-11">
+        <p class="painel__titulo">Filtros de categoria</p>
+        <div class="filtros">
+          <div class="campo"><label for="sexo-f">Sexo</label><select id="sexo-f"><option selected>Todos</option><option>Feminino</option><option>Masculino</option></select></div>
+          <div class="campo"><label for="medico-f">Médico</label><select id="medico-f"><option>Todos</option><option selected>Dra. Patrícia Lima</option></select></div>
+        </div>
+        <p class="dica-periodo">A combinação não retorna exames no período.</p>
+      </section>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhum resultado para os filtros selecionados</p>
+        <p class="estado-bloco__texto">Há 24.377 exames no período, mas nenhum para esta combinação.</p>
+        <button class="botao" type="button">Limpar filtros</button>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: erro ============ -->
+    <div data-estado="erro">
+      <div class="estado-bloco estado-bloco--erro">
+        <p class="estado-bloco__titulo">Não foi possível carregar os exames</p>
+        <p class="estado-bloco__texto">A consulta à fonte de dados falhou. Os filtros que você escolheu foram preservados.</p>
+        <button class="botao" type="button">Tentar novamente</button>
+      </div>
+    </div>
+
+  </main>
+
+<script src="assets/estados.js"></script>
+</body>
+</html>

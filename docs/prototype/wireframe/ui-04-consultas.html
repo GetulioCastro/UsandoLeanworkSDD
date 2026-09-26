@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-04 — Consultas (wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+</head>
+<body data-tela="UI-04" data-tela-nome="Consultas">
+
+  <header class="topo">
+    <div class="topo__marca">Painel de Indicadores de Saúde</div>
+    <div class="topo__usuario">
+      <span>Ana Souza — Gestor</span>
+      <span class="topo__papel">Gestor</span>
+      <a class="topo__link" href="ui-01-login.html">Sair</a>
+    </div>
+  </header>
+
+  <nav class="navegacao" aria-label="Indicadores">
+    <a href="ui-02-painel.html">Painel</a>
+    <a href="ui-03-atendimentos.html">Atendimentos</a>
+    <a href="ui-04-consultas.html" aria-current="page">Consultas</a>
+    <a href="ui-05-exames.html">Exames</a>
+    <a href="ui-06-produtividade.html">Produtividade</a>
+    <a href="ui-07-faturamento-convenios.html">Fatura. convênios</a>
+    <a href="ui-08-faturamento-particular.html">Fatura. particular</a>
+    <a href="ui-09-despesas.html">Despesas</a>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="badge-demo" data-rn="RN-02">
+      <span class="badge-demo__tag">Demo</span>
+      Dados demonstrativos — regras reais pendentes de validação
+    </div>
+
+    <h1 class="cabecalho-secao">Consultas</h1>
+    <p class="descricao-secao">Atendimentos cujo tipo é consulta, no período, com recortes por sexo, convênio e médico.</p>
+
+    <!-- ============ ESTADO: default ============ -->
+    <div data-estado="default">
+
+      <section class="painel" data-rn="RN-07">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de">De</label><input id="de" type="date" value="2025-10-01"></div>
+          <div class="campo"><label for="ate">Até</label><input id="ate" type="date" value="2026-09-30"></div>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="button">Últimos 12 meses</button>
+            <button class="botao" type="button">Aplicar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="painel" id="filtros" data-rn="RN-25">
+        <p class="painel__titulo">Filtros de categoria</p>
+        <div style="margin-bottom:10px">
+          <span class="nota-fixada" data-rn="RN-25">Tipo de atendimento: Consulta (fixo neste indicador — não é um filtro)</span>
+        </div>
+        <div class="filtros">
+          <div class="campo">
+            <label for="sexo">Sexo</label>
+            <select id="sexo"><option selected>Todos</option><option>Feminino</option><option>Masculino</option></select>
+          </div>
+          <div class="campo">
+            <label for="convenio">Convênio</label>
+            <select id="convenio"><option selected>Todos</option><option>Unimed</option><option>Bradesco Saúde</option><option>SulAmérica</option><option>Amil</option></select>
+          </div>
+          <div class="campo">
+            <label for="medico">Médico</label>
+            <select id="medico"><option selected>Todos</option><option>Dra. Marina Alves</option><option>Dr. Rafael Nunes</option><option>Dra. Patrícia Lima</option></select>
+          </div>
+          <div class="campo">
+            <label for="agrupar">Agrupar por</label>
+            <select id="agrupar"><option>Sexo</option><option selected>Convênio</option><option>Médico</option></select>
+          </div>
+          <div class="botoes"><button class="botao" type="button">Aplicar filtros</button></div>
+        </div>
+        <p class="dica-periodo">Não há filtro por tipo de atendimento: o tipo já é fixo, e oferecer a dimensão seria sugerir que o gestor pode alterá-la. <span class="lista-rn">(RN-25 / CA-16)</span></p>
+      </section>
+
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador" data-rn="RN-24">
+          <span class="card__rotulo">Total de consultas</span>
+          <span class="card__valor">6.918</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--negativo">−1,8%</span>
+            <span class="variacao variacao--neutro">−127</span>
+          </div>
+          <span class="card__link" style="color:var(--wf-texto-suave)">Anterior: 7.045</span>
+        </article>
+      </div>
+
+      <div class="grade grade--larga" style="margin-top:12px">
+        <section class="grafico">
+          <p class="grafico__titulo">Evolução de consultas por mês</p>
+          <p class="grafico__sub">Período 2025-10 a 2026-09 · 12 pontos</p>
+          <div class="grafico__regiao" aria-hidden="true">
+            <div class="grafico__barra" style="height:62%"></div>
+            <div class="grafico__barra" style="height:58%"></div>
+            <div class="grafico__barra" style="height:65%"></div>
+            <div class="grafico__barra" style="height:61%"></div>
+            <div class="grafico__barra" style="height:57%"></div>
+            <div class="grafico__barra" style="height:54%"></div>
+            <div class="grafico__barra" style="height:59%"></div>
+            <div class="grafico__barra" style="height:56%"></div>
+            <div class="grafico__barra" style="height:52%"></div>
+            <div class="grafico__barra" style="height:55%"></div>
+            <div class="grafico__barra" style="height:51%"></div>
+            <div class="grafico__barra" style="height:53%"></div>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico de linha — Chart.js local (ADR-006)</p>
+        </section>
+
+        <section class="grafico">
+          <p class="grafico__titulo">Distribuição por sexo</p>
+          <p class="grafico__sub">Mesmo recorte do card total</p>
+          <div class="grafico__donut">
+            <div class="grafico__rosca" aria-hidden="true"></div>
+            <ul class="grafico__legenda">
+              <li>Feminino — 4.219 (61%)</li>
+              <li>Masculino — 2.699 (39%)</li>
+            </ul>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico donut</p>
+        </section>
+      </div>
+
+      <h2 class="cabecalho-secao">Detalhamento</h2>
+      <div class="painel" style="padding:0">
+        <table class="tabela">
+          <thead><tr><th>Convênio</th><th class="num">Período atual</th><th class="num">Período anterior</th><th class="num">Variação %</th><th class="num">Variação abs.</th></tr></thead>
+          <tbody>
+            <tr><td>Unimed</td><td class="num">3.183</td><td class="num">3.291</td><td class="num">−3,3%</td><td class="num">−108</td></tr>
+            <tr><td>Bradesco Saúde</td><td class="num">1.937</td><td class="num">1.984</td><td class="num">−2,4%</td><td class="num">−47</td></tr>
+            <tr><td>SulAmérica</td><td class="num">1.176</td><td class="num">1.209</td><td class="num">−2,7%</td><td class="num">−33</td></tr>
+            <tr><td>Amil</td><td class="num">622</td><td class="num">561</td><td class="num">+10,9%</td><td class="num">+61</td></tr>
+          </tbody>
+          <tfoot><tr><td>Total</td><td class="num">6.918</td><td class="num">7.045</td><td class="num">−1,8%</td><td class="num">−127</td></tr></tfoot>
+        </table>
+      </div>
+
+      <div class="aviso aviso--info">
+        <span class="aviso__titulo">A definição de consulta ainda é pendente.</span>
+        Não se sabe se todo tipo “consulta” do sistema é consulta, nem se primeira consulta e retorno são tratados igual.
+        <span class="lista-rn">(RN-26 — PENDENTE)</span>
+      </div>
+
+    </div>
+
+    <!-- ============ ESTADO: carregando ============ -->
+    <div data-estado="carregando">
+      <section class="painel"><div class="esqueleto esqueleto--linha" style="width:260px"></div></section>
+      <section class="painel"><div class="esqueleto esqueleto--linha" style="width:200px"></div><div class="esqueleto esqueleto--linha" style="width:520px"></div></section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+      </div>
+      <div class="grade grade--larga" style="margin-top:12px">
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: vazio ============ -->
+    <div data-estado="vazio">
+      <section class="painel">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de-v">De</label><input id="de-v" type="date" value="2019-01-01"></div>
+          <div class="campo"><label for="ate-v">Até</label><input id="ate-v" type="date" value="2019-01-31"></div>
+          <div class="botoes"><button class="botao" type="button">Aplicar</button></div>
+        </div>
+      </section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador"><span class="card__rotulo">Total de consultas</span><span class="card__valor">0</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></article>
+      </div>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhuma consulta no período</p>
+        <p class="estado-bloco__texto">O conjunto demonstrativo não tem registros entre 01/01/2019 e 31/01/2019.</p>
+        <button class="botao botao--secundario" type="button">Voltar para os últimos 12 meses</button>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: vazioFiltro ============ -->
+    <div data-estado="vazioFiltro">
+      <section class="painel" data-rn="RN-11">
+        <p class="painel__titulo">Filtros de categoria</p>
+        <div class="filtros">
+          <div class="campo"><label for="medico-f">Médico</label><select id="medico-f"><option>Todos</option><option selected>Dr. Rafael Nunes</option></select></div>
+          <div class="campo"><label for="convenio-f">Convênio</label><select id="convenio-f"><option selected>Amil</option><option>Todos</option></select></div>
+        </div>
+        <p class="dica-periodo">A combinação não retorna consultas no período.</p>
+      </section>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhum resultado para os filtros selecionados</p>
+        <p class="estado-bloco__texto">Há 6.918 consultas no período, mas nenhuma para esta combinação de médico e convênio.</p>
+        <button class="botao" type="button">Limpar filtros</button>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: erro ============ -->
+    <div data-estado="erro">
+      <div class="estado-bloco estado-bloco--erro">
+        <p class="estado-bloco__titulo">Não foi possível carregar as consultas</p>
+        <p class="estado-bloco__texto">A consulta à fonte de dados falhou. Os filtros que você escolheu foram preservados.</p>
+        <button class="botao" type="button">Tentar novamente</button>
+      </div>
+    </div>
+
+  </main>
+
+<script src="assets/estados.js"></script>
+</body>
+</html>

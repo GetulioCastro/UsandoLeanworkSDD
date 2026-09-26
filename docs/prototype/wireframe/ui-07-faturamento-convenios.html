@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-07 — Faturamento por convênios (wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+</head>
+<body data-tela="UI-07" data-tela-nome="Faturamento por convênios">
+
+  <header class="topo">
+    <div class="topo__marca">Painel de Indicadores de Saúde</div>
+    <div class="topo__usuario">
+      <span>Ana Souza — Gestor</span>
+      <span class="topo__papel">Gestor</span>
+      <a class="topo__link" href="ui-01-login.html">Sair</a>
+    </div>
+  </header>
+
+  <nav class="navegacao" aria-label="Indicadores">
+    <a href="ui-02-painel.html">Painel</a>
+    <a href="ui-03-atendimentos.html">Atendimentos</a>
+    <a href="ui-04-consultas.html">Consultas</a>
+    <a href="ui-05-exames.html">Exames</a>
+    <a href="ui-06-produtividade.html">Produtividade</a>
+    <a href="ui-07-faturamento-convenios.html" aria-current="page">Fatura. convênios</a>
+    <a href="ui-08-faturamento-particular.html">Fatura. particular</a>
+    <a href="ui-09-despesas.html">Despesas</a>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="badge-demo" data-rn="RN-02">
+      <span class="badge-demo__tag">Demo</span>
+      Dados demonstrativos — regras reais pendentes de validação
+    </div>
+
+    <h1 class="cabecalho-secao">Faturamento por convênios</h1>
+    <p class="descricao-secao">Soma dos valores faturados no período, agrupada por convênio, com participação percentual.</p>
+
+    <!-- ============ ESTADO: default ============ -->
+    <div data-estado="default">
+
+      <section class="painel" data-rn="RN-07">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de">De</label><input id="de" type="date" value="2025-10-01"></div>
+          <div class="campo"><label for="ate">Até</label><input id="ate" type="date" value="2026-09-30"></div>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="button">Últimos 12 meses</button>
+            <button class="botao" type="button">Aplicar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="painel" id="filtros" data-rn="RN-39">
+        <p class="painel__titulo">Filtros de categoria</p>
+        <div class="filtros">
+          <div class="campo">
+            <label for="convenio">Convênio</label>
+            <select id="convenio"><option selected>Todos</option><option>Unimed</option><option>Bradesco Saúde</option><option>SulAmérica</option><option>Amil</option></select>
+          </div>
+          <div class="campo">
+            <label for="tipo">Tipo de atendimento</label>
+            <select id="tipo"><option selected>Todos</option><option>Consulta</option><option>Exame</option><option>Procedimento</option><option>Internação clínica</option><option>Internação cirúrgica</option></select>
+          </div>
+          <div class="botoes"><button class="botao" type="button">Aplicar filtros</button></div>
+        </div>
+        <p class="dica-periodo">Não há recorte por sexo nem por médico: as duas dimensões não têm significado na análise financeira. <span class="lista-rn">(RN-39)</span></p>
+      </section>
+
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador" data-rn="RN-37">
+          <span class="card__rotulo">Faturamento total</span>
+          <span class="card__valor">R$ 1.284.300</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--positivo">+5,6%</span>
+            <span class="variacao variacao--neutro">+R$ 68.100</span>
+          </div>
+          <span class="card__link" style="color:var(--wf-texto-suave)">Anterior: R$ 1.216.200</span>
+        </article>
+        <article class="card">
+          <span class="card__rotulo">Convênios com faturamento</span>
+          <span class="card__valor">4</span>
+          <div class="card__rodape"><span class="variacao variacao--neutro">no período</span></div>
+        </article>
+        <article class="card">
+          <span class="card__rotulo">Maior participação</span>
+          <span class="card__valor" style="font-size:18px">Unimed — 46%</span>
+          <div class="card__rodape"><span class="variacao variacao--neutro">R$ 590.778</span></div>
+        </article>
+      </div>
+
+      <div class="grade grade--larga" style="margin-top:12px">
+        <section class="grafico" data-rn="RN-37">
+          <p class="grafico__titulo">Faturamento por convênio</p>
+          <p class="grafico__sub">Comparativo entre os períodos de referência</p>
+          <div class="grafico__regiao" aria-hidden="true">
+            <div class="grafico__barra" style="height:100%"></div>
+            <div class="grafico__barra" style="height:61%"></div>
+            <div class="grafico__barra" style="height:37%"></div>
+            <div class="grafico__barra" style="height:20%"></div>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico de barras agrupadas — duas séries por convênio</p>
+        </section>
+
+        <section class="grafico" data-rn="RN-38">
+          <p class="grafico__titulo">Participação por convênio</p>
+          <p class="grafico__sub">Soma das fatias = 100% do período</p>
+          <div class="grafico__donut">
+            <div class="grafico__rosca" aria-hidden="true"></div>
+            <ul class="grafico__legenda">
+              <li>Unimed — 46%</li>
+              <li>Bradesco Saúde — 28%</li>
+              <li>SulAmérica — 17%</li>
+              <li>Amil — 9%</li>
+            </ul>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico donut — participação = valor do convênio / total do mesmo período e filtro</p>
+        </section>
+      </div>
+
+      <h2 class="cabecalho-secao">Detalhamento</h2>
+      <div class="painel" style="padding:0">
+        <table class="tabela" data-rn="RN-38">
+          <thead><tr><th>Convênio</th><th class="num">Período atual</th><th class="num">Período anterior</th><th class="num">Variação %</th><th class="num">Variação abs.</th><th class="num">Participação</th></tr></thead>
+          <tbody>
+            <tr><td>Unimed</td><td class="num">R$ 590.778</td><td class="num">R$ 552.140</td><td class="num">+7,0%</td><td class="num">+R$ 38.638</td><td class="num">46,0%</td></tr>
+            <tr><td>Bradesco Saúde</td><td class="num">R$ 359.604</td><td class="num">R$ 352.698</td><td class="num">+2,0%</td><td class="num">+R$ 6.906</td><td class="num">28,0%</td></tr>
+            <tr><td>SulAmérica</td><td class="num">R$ 218.331</td><td class="num">R$ 224.190</td><td class="num">−2,6%</td><td class="num">−R$ 5.859</td><td class="num">17,0%</td></tr>
+            <tr><td>Amil</td><td class="num">R$ 115.587</td><td class="num">R$ 87.172</td><td class="num">+32,6%</td><td class="num">+R$ 28.415</td><td class="num">9,0%</td></tr>
+          </tbody>
+          <tfoot><tr><td>Total</td><td class="num">R$ 1.284.300</td><td class="num">R$ 1.216.200</td><td class="num">+5,6%</td><td class="num">+R$ 68.100</td><td class="num">100,0%</td></tr></tfoot>
+        </table>
+      </div>
+
+      <div class="aviso aviso--info">
+        <span class="aviso__titulo">O que é “faturamento” ainda é pendente.</span>
+        Não se sabe se o valor é faturado, autorizado, glosado ou recebido, nem qual competência usar, nem como glosa e
+        estorno entram. O total acima é a soma simples de valores faturados do seed demonstrativo.
+        <span class="lista-rn">(RN-40, RN-41 — PENDENTE)</span>
+      </div>
+
+    </div>
+
+    <!-- ============ ESTADO: carregando ============ -->
+    <div data-estado="carregando">
+      <section class="painel"><div class="esqueleto esqueleto--linha" style="width:260px"></div></section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+      </div>
+      <div class="grade grade--larga" style="margin-top:12px">
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+      </div>
+      <div class="painel" style="padding:12px"><div class="esqueleto esqueleto--linha"></div><div class="esqueleto esqueleto--linha"></div><div class="esqueleto esqueleto--linha"></div><div class="esqueleto esqueleto--linha"></div><div class="esqueleto esqueleto--linha"></div></div>
+    </div>
+
+    <!-- ============ ESTADO: vazio ============ -->
+    <div data-estado="vazio">
+      <section class="painel">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de-v">De</label><input id="de-v" type="date" value="2019-01-01"></div>
+          <div class="campo"><label for="ate-v">Até</label><input id="ate-v" type="date" value="2019-01-31"></div>
+          <div class="botoes"><button class="botao" type="button">Aplicar</button></div>
+        </div>
+      </section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador"><span class="card__rotulo">Faturamento total</span><span class="card__valor">R$ 0,00</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></article>
+      </div>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhum faturamento no período</p>
+        <p class="estado-bloco__texto">O seed demonstrativo não cobre janeiro de 2019.</p>
+        <button class="botao botao--secundario" type="button">Voltar para os últimos 12 meses</button>
+      </div>
+      <p class="anotacao"><span class="anotacao__tag">RN-38</span>Com faturamento total zero, a participação percentual não é exibida — dividir por zero não tem resposta.</p>
+    </div>
+
+    <!-- ============ ESTADO: vazioFiltro ============ -->
+    <div data-estado="vazioFiltro">
+      <section class="painel" data-rn="RN-11">
+        <p class="painel__titulo">Filtros de categoria</p>
+        <div class="filtros">
+          <div class="campo"><label for="convenio-f">Convênio</label><select id="convenio-f"><option>Todos</option><option>Unimed</option><option selected>Amil</option></select></div>
+          <div class="campo"><label for="tipo-f">Tipo de atendimento</label><select id="tipo-f"><option>Todos</option><option selected>Internação cirúrgica</option></select></div>
+        </div>
+        <p class="dica-periodo">A combinação não retorna faturamento no período.</p>
+      </section>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhum resultado para os filtros selecionados</p>
+        <p class="estado-bloco__texto">O Amil faturou R$ 115.587 no período, mas nada disso é internação cirúrgica.</p>
+        <button class="botao" type="button">Limpar filtros</button>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: erro ============ -->
+    <div data-estado="erro">
+      <div class="estado-bloco estado-bloco--erro">
+        <p class="estado-bloco__titulo">Não foi possível carregar o faturamento por convênios</p>
+        <p class="estado-bloco__texto">A consulta à fonte de dados falhou. Período e filtros foram preservados.</p>
+        <button class="botao" type="button">Tentar novamente</button>
+      </div>
+    </div>
+
+  </main>
+
+<script src="assets/estados.js"></script>
+</body>
+</html>

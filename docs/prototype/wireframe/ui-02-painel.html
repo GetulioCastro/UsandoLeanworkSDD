@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-02 — Painel de indicadores (wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+</head>
+<body data-tela="UI-02" data-tela-nome="Painel de indicadores">
+
+  <header class="topo">
+    <div class="topo__marca">Painel de Indicadores de Saúde</div>
+    <div class="topo__usuario">
+      <span>Ana Souza — Gestor</span>
+      <span class="topo__papel">Gestor</span>
+      <a class="topo__link" href="ui-01-login.html">Sair</a>
+    </div>
+  </header>
+
+  <nav class="navegacao" aria-label="Indicadores">
+    <a href="ui-02-painel.html" aria-current="page">Painel</a>
+    <a href="ui-03-atendimentos.html">Atendimentos</a>
+    <a href="ui-04-consultas.html">Consultas</a>
+    <a href="ui-05-exames.html">Exames</a>
+    <a href="ui-06-produtividade.html">Produtividade</a>
+    <a href="ui-07-faturamento-convenios.html">Fatura. convênios</a>
+    <a href="ui-08-faturamento-particular.html">Fatura. particular</a>
+    <a href="ui-09-despesas.html">Despesas</a>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="badge-demo" data-rn="RN-02">
+      <span class="badge-demo__tag">Demo</span>
+      Dados demonstrativos — regras reais pendentes de validação
+    </div>
+
+    <h1 class="cabecalho-secao">Visão consolidada</h1>
+    <p class="descricao-secao">Sete indicadores no período selecionado, com comparação e atalho para o detalhamento de cada um.</p>
+
+    <!-- ============ ESTADO: default ============ -->
+    <div data-estado="default">
+
+      <section class="painel" id="periodo" data-rn="RN-07">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo">
+            <label for="de">De</label>
+            <input id="de" type="date" value="2025-10-01">
+          </div>
+          <div class="campo">
+            <label for="ate">Até</label>
+            <input id="ate" type="date" value="2026-09-30">
+          </div>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="button">Últimos 12 meses</button>
+            <button class="botao" type="button">Aplicar</button>
+          </div>
+        </div>
+        <p class="dica-periodo">Intervalo semiaberto: inclui o dia inicial e o dia final. <span class="lista-rn">(RN-09)</span></p>
+        <div class="chave-comparacao" style="margin-top:10px">
+          <span style="font-size:12px;color:var(--wf-texto-suave)">Comparar com</span>
+          <label><input type="radio" name="cmp" checked> Período anterior equivalente <span class="lista-rn">(RN-13, padrão)</span></label>
+          <label><input type="radio" name="cmp"> Mesmo período do ano anterior <span class="lista-rn">(RN-15, adicional)</span></label>
+        </div>
+        <p class="dica-periodo">
+          Período anterior: 2025-09-30 a 2026-09-29 — 365 dias, mesmo número de dias do período selecionado.
+        </p>
+      </section>
+
+      <h2 class="cabecalho-secao" id="cards" data-rn="RN-20,RN-24,RN-27,RN-30,RN-37,RN-42,RN-45">Indicadores do período</h2>
+      <div class="grade">
+
+        <article class="card card--indicador">
+          <span class="card__rotulo">Atendimentos</span>
+          <span class="card__valor">18.402</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--positivo">+4,2%</span>
+            <span class="variacao variacao--neutro">+741</span>
+          </div>
+          <a class="card__link" href="ui-03-atendimentos.html">Ver detalhamento →</a>
+        </article>
+
+        <article class="card card--indicador">
+          <span class="card__rotulo">Consultas</span>
+          <span class="card__valor">6.918</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--negativo">−1,8%</span>
+            <span class="variacao variacao--neutro">−127</span>
+          </div>
+          <a class="card__link" href="ui-04-consultas.html">Ver detalhamento →</a>
+        </article>
+
+        <article class="card card--indicador">
+          <span class="card__rotulo">Exames</span>
+          <span class="card__valor">24.377</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--positivo">+9,1%</span>
+            <span class="variacao variacao--neutro">+2.035</span>
+          </div>
+          <a class="card__link" href="ui-05-exames.html">Ver detalhamento →</a>
+        </article>
+
+        <article class="card card--indicador" data-rn="RN-30">
+          <span class="card__rotulo">Produtividade médica</span>
+          <span class="card__valor">6.918</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--positivo">+3,4%</span>
+            <span class="variacao variacao--neutro">+227</span>
+          </div>
+          <span class="card__link" style="color:var(--wf-alerta)">Métrica provisória: atendimentos por médico</span>
+          <a class="card__link" href="ui-06-produtividade.html">Ver detalhamento →</a>
+        </article>
+
+        <article class="card card--indicador">
+          <span class="card__rotulo">Faturamento por convênios</span>
+          <span class="card__valor">R$ 1.284.300</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--positivo">+5,6%</span>
+            <span class="variacao variacao--neutro">+R$ 68.100</span>
+          </div>
+          <a class="card__link" href="ui-07-faturamento-convenios.html">Ver detalhamento →</a>
+        </article>
+
+        <article class="card card--indicador">
+          <span class="card__rotulo">Faturamento particular</span>
+          <span class="card__valor">R$ 96.450</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--negativo">−2,3%</span>
+            <span class="variacao variacao--neutro">−R$ 2.270</span>
+          </div>
+          <a class="card__link" href="ui-08-faturamento-particular.html">Ver detalhamento →</a>
+        </article>
+
+        <article class="card card--indicador">
+          <span class="card__rotulo">Despesas</span>
+          <span class="card__valor">R$ 742.900</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--negativo">+7,4%</span>
+            <span class="variacao variacao--neutro">+R$ 51.200</span>
+          </div>
+          <a class="card__link" href="ui-09-despesas.html">Ver detalhamento →</a>
+        </article>
+
+      </div>
+
+      <div class="grade grade--larga" style="margin-top:12px">
+
+        <section class="grafico" id="evolucao" data-rn="RN-11,RN-14">
+          <p class="grafico__titulo">Evolução de atendimentos por mês</p>
+          <p class="grafico__sub">Período 2025-10 a 2026-09 · 12 pontos</p>
+          <div class="grafico__regiao" aria-hidden="true">
+            <div class="grafico__barra" style="height:38%"></div>
+            <div class="grafico__barra" style="height:45%"></div>
+            <div class="grafico__barra" style="height:41%"></div>
+            <div class="grafico__barra" style="height:52%"></div>
+            <div class="grafico__barra" style="height:49%"></div>
+            <div class="grafico__barra" style="height:58%"></div>
+            <div class="grafico__barra" style="height:63%"></div>
+            <div class="grafico__barra" style="height:57%"></div>
+            <div class="grafico__barra" style="height:66%"></div>
+            <div class="grafico__barra" style="height:71%"></div>
+            <div class="grafico__barra" style="height:68%"></div>
+            <div class="grafico__barra" style="height:78%"></div>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico de linha — Chart.js local (ADR-006), dados em ilha JSON</p>
+        </section>
+
+        <section class="grafico" id="participacao" data-rn="RN-38">
+          <p class="grafico__titulo">Participação por convênio</p>
+          <p class="grafico__sub">Faturamento do período</p>
+          <div class="grafico__donut">
+            <div class="grafico__rosca" aria-hidden="true"></div>
+            <ul class="grafico__legenda">
+              <li>Unimed — 46%</li>
+              <li>Bradesco Saúde — 28%</li>
+              <li>SulAmérica — 17%</li>
+              <li>Amil — 9%</li>
+            </ul>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico donut — soma das fatias = 100%</p>
+        </section>
+
+      </div>
+
+      <h2 class="cabecalho-secao" id="resumo" data-rn="RN-14">Tabela de resumo</h2>
+      <div class="painel" style="padding:0">
+        <table class="tabela">
+          <thead>
+            <tr>
+              <th>Indicador</th>
+              <th class="num">Período atual</th>
+              <th class="num">Período anterior</th>
+              <th class="num">Variação %</th>
+              <th class="num">Variação abs.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Atendimentos</td><td class="num">18.402</td><td class="num">17.661</td><td class="num">+4,2%</td><td class="num">+741</td></tr>
+            <tr><td>Consultas</td><td class="num">6.918</td><td class="num">7.045</td><td class="num">−1,8%</td><td class="num">−127</td></tr>
+            <tr><td>Exames</td><td class="num">24.377</td><td class="num">22.342</td><td class="num">+9,1%</td><td class="num">+2.035</td></tr>
+            <tr><td>Faturamento por convênios</td><td class="num">R$ 1.284.300</td><td class="num">R$ 1.216.200</td><td class="num">+5,6%</td><td class="num">+R$ 68.100</td></tr>
+            <tr><td>Faturamento particular</td><td class="num">R$ 96.450</td><td class="num">R$ 98.720</td><td class="num">−2,3%</td><td class="num">−R$ 2.270</td></tr>
+            <tr><td>Despesas</td><td class="num">R$ 742.900</td><td class="num">R$ 691.700</td><td class="num">+7,4%</td><td class="num">+R$ 51.200</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="anotacao">
+        <span class="anotacao__tag">wireframe</span>
+        O card de Produtividade médica mostra o número sob o nome de negócio e, logo abaixo, a marcação de que a métrica
+        é provisória — é o requisito de <span class="lista-rn">CA-03/RN-30</span>: a aplicação não pode apresentar a
+        contagem por médico como se fosse a regra real de produtividade.
+      </div>
+
+    </div>
+
+    <!-- ============ ESTADO: carregando ============ -->
+    <div data-estado="carregando">
+      <section class="painel">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="esqueleto esqueleto--linha" style="width:280px"></div>
+        <div class="esqueleto esqueleto--linha" style="width:180px"></div>
+      </section>
+      <div class="grade" style="margin-top:12px">
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--valor"></div><div class="esqueleto esqueleto--linha" style="width:70%"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--valor"></div><div class="esqueleto esqueleto--linha" style="width:70%"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--valor"></div><div class="esqueleto esqueleto--linha" style="width:70%"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--valor"></div><div class="esqueleto esqueleto--linha" style="width:70%"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--valor"></div><div class="esqueleto esqueleto--linha" style="width:70%"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--valor"></div><div class="esqueleto esqueleto--linha" style="width:70%"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--valor"></div><div class="esqueleto esqueleto--linha" style="width:70%"></div></div>
+      </div>
+      <div class="grade grade--larga" style="margin-top:12px">
+        <div class="grafico"><div class="esqueleto esqueleto--linha" style="width:40%"></div><div class="esqueleto esqueleto--grafico"></div></div>
+        <div class="grafico"><div class="esqueleto esqueleto--linha" style="width:40%"></div><div class="esqueleto esqueleto--grafico"></div></div>
+      </div>
+      <p class="dica-periodo">Skeleton preserva a estrutura da tela; nenhum valor numérico é exibido antes de a consulta responder.</p>
+    </div>
+
+    <!-- ============ ESTADO: vazio (período sem dados) ============ -->
+    <div data-estado="vazio">
+      <section class="painel">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de-v">De</label><input id="de-v" type="date" value="2019-01-01"></div>
+          <div class="campo"><label for="ate-v">Até</label><input id="ate-v" type="date" value="2019-01-31"></div>
+          <div class="botoes"><button class="botao" type="button">Aplicar</button></div>
+        </div>
+        <p class="dica-periodo">Nenhum registro do conjunto demonstrativo neste intervalo.</p>
+      </section>
+      <div class="grade" style="margin-top:12px">
+        <div class="card card--indicador"><span class="card__rotulo">Atendimentos</span><span class="card__valor">0</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></div>
+        <div class="card card--indicador"><span class="card__rotulo">Consultas</span><span class="card__valor">0</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></div>
+        <div class="card card--indicador"><span class="card__rotulo">Exames</span><span class="card__valor">0</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></div>
+        <div class="card card--indicador"><span class="card__rotulo">Produtividade médica</span><span class="card__valor">0</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></div>
+        <div class="card card--indicador"><span class="card__rotulo">Faturamento por convênios</span><span class="card__valor">R$ 0,00</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></div>
+        <div class="card card--indicador"><span class="card__rotulo">Faturamento particular</span><span class="card__valor">R$ 0,00</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></div>
+        <div class="card card--indicador"><span class="card__rotulo">Despesas</span><span class="card__valor">R$ 0,00</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></div>
+      </div>
+      <div class="estado-bloco" style="margin-top:12px">
+        <p class="estado-bloco__titulo">Sem registros no período selecionado</p>
+        <p class="estado-bloco__texto">Os indicadores mostram zero e as comparações mostram “—”, porque não há base de cálculo. Isso não é erro.</p>
+        <button class="botao botao--secundario" type="button">Voltar para os últimos 12 meses</button>
+      </div>
+      <p class="anotacao"><span class="anotacao__tag">RN-12 / CA-07</span>Zero é resposta válida; estado de erro é proibido aqui.</p>
+    </div>
+
+    <!-- ============ ESTADO: erro ============ -->
+    <div data-estado="erro">
+      <div class="estado-bloco estado-bloco--erro">
+        <p class="estado-bloco__titulo">Não foi possível carregar os indicadores</p>
+        <p class="estado-bloco__texto">A fonte de dados não respondeu. Nenhum valor é exibido parcialmente — um indicador sem dado não pode parecer zero.</p>
+        <button class="botao" type="button">Tentar novamente</button>
+      </div>
+      <p class="anotacao">
+        <span class="anotacao__tag">regra</span>Falha de fonte é estado de tela inteira, com retentativa. A distinção entre
+        “zero” e “não sei” é o que impede o gestor de tomar decisão sobre número inventado.
+      </p>
+    </div>
+
+  </main>
+
+<script src="assets/estados.js"></script>
+</body>
+</html>

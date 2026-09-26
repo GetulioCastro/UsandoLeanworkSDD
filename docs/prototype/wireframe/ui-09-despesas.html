@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-09 — Despesas (wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+</head>
+<body data-tela="UI-09" data-tela-nome="Despesas">
+
+  <header class="topo">
+    <div class="topo__marca">Painel de Indicadores de Saúde</div>
+    <div class="topo__usuario">
+      <span>Ana Souza — Gestor</span>
+      <span class="topo__papel">Gestor</span>
+      <a class="topo__link" href="ui-01-login.html">Sair</a>
+    </div>
+  </header>
+
+  <nav class="navegacao" aria-label="Indicadores">
+    <a href="ui-02-painel.html">Painel</a>
+    <a href="ui-03-atendimentos.html">Atendimentos</a>
+    <a href="ui-04-consultas.html">Consultas</a>
+    <a href="ui-05-exames.html">Exames</a>
+    <a href="ui-06-produtividade.html">Produtividade</a>
+    <a href="ui-07-faturamento-convenios.html">Fatura. convênios</a>
+    <a href="ui-08-faturamento-particular.html">Fatura. particular</a>
+    <a href="ui-09-despesas.html" aria-current="page">Despesas</a>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="badge-demo" data-rn="RN-02">
+      <span class="badge-demo__tag">Demo</span>
+      Dados demonstrativos — regras reais pendentes de validação
+    </div>
+
+    <h1 class="cabecalho-secao">Despesas</h1>
+    <p class="descricao-secao">Soma das despesas do serviço no período, com dimensionalidade reduzida em relação aos indicadores assistenciais.</p>
+
+    <!-- ============ ESTADO: default ============ -->
+    <div data-estado="default">
+
+      <section class="painel" data-rn="RN-07">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de">De</label><input id="de" type="date" value="2025-10-01"></div>
+          <div class="campo"><label for="ate">Até</label><input id="ate" type="date" value="2026-09-30"></div>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="button">Últimos 12 meses</button>
+            <button class="botao" type="button">Aplicar</button>
+          </div>
+        </div>
+        <p class="dica-periodo">
+          O período é a única dimensão desta tela. Não há recorte por sexo, por paciente nem por médico atendente, e não
+          há recorte por categoria de despesa. <span class="lista-rn">(RN-46)</span>
+        </p>
+      </section>
+
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador" data-rn="RN-45">
+          <span class="card__rotulo">Despesas totais</span>
+          <span class="card__valor">R$ 742.900</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--negativo">+7,4%</span>
+            <span class="variacao variacao--neutro">+R$ 51.200</span>
+          </div>
+          <span class="card__link" style="color:var(--wf-texto-suave)">Anterior: R$ 691.700</span>
+        </article>
+        <article class="card">
+          <span class="card__rotulo">Média mensal</span>
+          <span class="card__valor">R$ 61.908</span>
+          <div class="card__rodape"><span class="variacao variacao--neutro">12 meses</span></div>
+        </article>
+        <article class="card">
+          <span class="card__rotulo">Mês mais alto</span>
+          <span class="card__valor">R$ 76.423</span>
+          <div class="card__rodape"><span class="variacao variacao--neutro">set/2026</span></div>
+        </article>
+      </div>
+
+      <div class="grade grade--larga" style="margin-top:12px">
+        <section class="grafico" data-rn="RN-45">
+          <p class="grafico__titulo">Evolução das despesas por mês</p>
+          <p class="grafico__sub">Período 2025-10 a 2026-09 · 12 pontos</p>
+          <div class="grafico__regiao" aria-hidden="true">
+            <div class="grafico__barra" style="height:52%"></div>
+            <div class="grafico__barra" style="height:56%"></div>
+            <div class="grafico__barra" style="height:59%"></div>
+            <div class="grafico__barra" style="height:55%"></div>
+            <div class="grafico__barra" style="height:62%"></div>
+            <div class="grafico__barra" style="height:60%"></div>
+            <div class="grafico__barra" style="height:66%"></div>
+            <div class="grafico__barra" style="height:64%"></div>
+            <div class="grafico__barra" style="height:70%"></div>
+            <div class="grafico__barra" style="height:74%"></div>
+            <div class="grafico__barra" style="height:71%"></div>
+            <div class="grafico__barra" style="height:78%"></div>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico de linha — Chart.js local (ADR-006)</p>
+        </section>
+      </div>
+
+      <div class="aviso aviso--info">
+        <span class="aviso__titulo">A composição da despesa por categoria fica para a Etapa 2.</span>
+        As categorias de despesa existentes, e a possibilidade de rateio por centro de custo, por convênio ou por
+        unidade, ainda não foram descobertas. <span class="lista-rn">(RN-47 — PENDENTE)</span>
+        <br><br>
+        Decisão registrada: a Etapa 1 entrega o indicador somente por período. A RN-46 já condiciona a categoria a
+        &ldquo;quando a categoria existir&rdquo;, então esta tela não oferece um filtro que talvez nunca faça sentido.
+      </div>
+
+    </div>
+
+    <!-- ============ ESTADO: carregando ============ -->
+    <div data-estado="carregando">
+      <section class="painel"><div class="esqueleto esqueleto--linha" style="width:260px"></div></section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+      </div>
+      <div class="grade grade--larga" style="margin-top:12px">
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: vazio ============ -->
+    <div data-estado="vazio">
+      <section class="painel">
+        <p class="painel__titulo">Período e comparação</p>
+        <div class="filtros">
+          <div class="campo"><label for="de-v">De</label><input id="de-v" type="date" value="2019-01-01"></div>
+          <div class="campo"><label for="ate-v">Até</label><input id="ate-v" type="date" value="2019-01-31"></div>
+          <div class="botoes"><button class="botao" type="button">Aplicar</button></div>
+        </div>
+      </section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador"><span class="card__rotulo">Despesas totais</span><span class="card__valor">R$ 0,00</span><div class="card__rodape"><span class="variacao variacao--neutro">—</span></div></article>
+      </div>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhuma despesa no período</p>
+        <p class="estado-bloco__texto">O seed demonstrativo não cobre janeiro de 2019.</p>
+        <button class="botao botao--secundario" type="button">Voltar para os últimos 12 meses</button>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: erro ============ -->
+    <div data-estado="erro">
+      <div class="estado-bloco estado-bloco--erro">
+        <p class="estado-bloco__titulo">Não foi possível carregar as despesas</p>
+        <p class="estado-bloco__texto">A consulta à fonte de dados falhou. O período selecionado foi preservado.</p>
+        <button class="botao" type="button">Tentar novamente</button>
+      </div>
+    </div>
+
+  </main>
+
+<script src="assets/estados.js"></script>
+</body>
+</html>

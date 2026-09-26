@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-01 — Autenticação (wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+</head>
+<body class="login" data-tela="UI-01" data-tela-nome="Autenticação">
+
+  <div class="login__caixa">
+
+    <h1 class="login__titulo">Painel de Indicadores de Saúde</h1>
+    <p class="login__sub">Acesso restrito a usuários autenticados.</p>
+
+    <!-- ============ ESTADO: default ============ -->
+    <div data-estado="default">
+      <div class="painel" id="formulario" data-rn="RN-17">
+        <p class="painel__titulo">Entrar</p>
+        <div class="campo" style="margin-bottom:10px">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" placeholder="gestor@instituicao.local">
+        </div>
+        <div class="campo" style="margin-bottom:14px">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" placeholder="••••••••">
+        </div>
+        <button class="botao" type="button">Entrar</button>
+      </div>
+      <p class="login__rodape">
+        Nenhum indicador é exibido e nenhuma consulta à fonte de dados é executada antes da autenticação
+        <span class="lista-rn">(RN-17 / CA-10)</span>.
+      </p>
+      <div class="anotacao">
+        <span class="anotacao__tag">wireframe</span>
+        Não há link de “criar conta” nem de “esqueci minha senha”: o PRD declara o gerenciamento de usuários e
+        papéis fora de escopo. O seed do Identity é a única origem de usuários.
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: validacao ============ -->
+    <div data-estado="validacao">
+      <div class="painel" id="formulario-erro" data-rn="RN-17">
+        <p class="painel__titulo">Entrar</p>
+        <div class="aviso aviso--restrito" role="alert" style="margin-bottom:12px">
+          <span class="aviso__titulo">E-mail ou senha inválidos.</span>
+          Verifique as credenciais e tente novamente.
+        </div>
+        <div class="campo" style="margin-bottom:10px">
+          <label for="email-v">E-mail</label>
+          <input id="email-v" type="email" value="gestor@instituicao.local" style="border-color:var(--wf-erro)">
+        </div>
+        <div class="campo" style="margin-bottom:14px">
+          <label for="senha-v">Senha</label>
+          <input id="senha-v" type="password" value="errada" style="border-color:var(--wf-erro)">
+        </div>
+        <button class="botao" type="button">Entrar</button>
+      </div>
+      <p class="login__rodape">A mensagem não revela se o e-mail existe. Dados digitados são preservados.</p>
+    </div>
+
+    <!-- ============ ESTADO: enviando ============ -->
+    <div data-estado="enviando">
+      <div class="painel">
+        <p class="painel__titulo">Entrar</p>
+        <div class="campo" style="margin-bottom:10px">
+          <label for="email-e">E-mail</label>
+          <input id="email-e" type="email" value="gestor@instituicao.local" disabled>
+        </div>
+        <div class="campo" style="margin-bottom:14px">
+          <label for="senha-e">Senha</label>
+          <input id="senha-e" type="password" value="••••••••" disabled>
+        </div>
+        <button class="botao" type="button" disabled>Entrando…</button>
+      </div>
+      <p class="login__rodape">Campos e botão desabilitados — previne envio duplo.</p>
+    </div>
+
+    <!-- ============ ESTADO: erroEnvio ============ -->
+    <div data-estado="erroEnvio">
+      <div class="painel">
+        <p class="painel__titulo">Entrar</p>
+        <div class="estado-bloco estado-bloco--erro">
+          <p class="estado-bloco__titulo">Não foi possível verificar suas credenciais agora.</p>
+          <p class="estado-bloco__texto">O serviço de autenticação não respondeu. Tente novamente em instantes.</p>
+          <button class="botao" type="button">Tentar novamente</button>
+        </div>
+        <div class="campo" style="margin-top:12px">
+          <label for="email-r">E-mail</label>
+          <input id="email-r" type="email" value="gestor@instituicao.local">
+        </div>
+        <div class="campo" style="margin-top:10px">
+          <label for="senha-r">Senha</label>
+          <input id="senha-r" type="password" value="••••••••">
+        </div>
+      </div>
+      <p class="login__rodape">Falha no servidor, distinta de credencial inválida. E-mail e senha preservados.</p>
+    </div>
+
+  </div>
+
+<script src="assets/estados.js"></script>
+</body>
+</html>

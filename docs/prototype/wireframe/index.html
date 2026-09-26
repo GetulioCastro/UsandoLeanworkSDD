@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Indicadores de Saúde — wireframe (SPEC-UI-001)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+<style>
+  .indice { max-width: 900px; margin: 0 auto; padding: 24px 20px 80px; }
+  .indice h1 { font-size: 20px; margin: 0 0 4px; }
+  .indice__sub { color: var(--wf-texto-suave); margin: 0 0 16px; font-size: 14px; }
+  .indice table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; border: 1px solid var(--wf-borda); }
+  .indice th, .indice td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--wf-borda); vertical-align: top; }
+  .indice th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--wf-texto-suave); }
+  .indice code { font-family: var(--wf-fonte-mono); font-size: 12px; background: var(--wf-primaria-fraca); padding: 1px 4px; border-radius: 2px; }
+  .indice a { color: var(--wf-primaria); }
+  .indice__nota { margin-top: 20px; font-size: 13px; color: var(--wf-texto-suave); border-left: 3px solid var(--wf-primaria); padding-left: 10px; }
+  .estados { font-family: var(--wf-fonte-mono); font-size: 12px; color: var(--wf-texto-suave); }
+</style>
+</head>
+<body>
+
+<div class="indice">
+
+  <h1>Painel de Indicadores de Saúde — wireframe</h1>
+  <p class="indice__sub">
+    Protótipo de estrutura e estados da SPEC-UI-001. Fidelidade de wireframe: cobre telas, campos, navegação e
+    estados — <strong>não</strong> é referência de implementação visual. Nenhuma skill de design de interface estava
+    disponível no ambiente.
+  </p>
+
+  <div class="badge-demo">
+    <span class="badge-demo__tag">Demo</span>
+    Dados demonstrativos — regras reais pendentes de validação
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Tela</th><th>Rota prevista</th><th>Estados no wireframe</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="ui-01-login.html">UI-01 — Autenticação</a></td>
+        <td><code>/Identity/Account/Login</code></td>
+        <td class="estados">default, validacao, enviando, erroEnvio</td>
+      </tr>
+      <tr>
+        <td><a href="ui-02-painel.html">UI-02 — Painel de indicadores</a></td>
+        <td><code>/</code></td>
+        <td class="estados">default, carregando, vazio, erro</td>
+      </tr>
+      <tr>
+        <td><a href="ui-03-atendimentos.html">UI-03 — Atendimentos</a></td>
+        <td><code>/Indicadores/Atendimentos</code></td>
+        <td class="estados">default, carregando, vazio, vazioFiltro, erro</td>
+      </tr>
+      <tr>
+        <td><a href="ui-04-consultas.html">UI-04 — Consultas</a></td>
+        <td><code>/Indicadores/Consultas</code></td>
+        <td class="estados">default, carregando, vazio, vazioFiltro, erro</td>
+      </tr>
+      <tr>
+        <td><a href="ui-05-exames.html">UI-05 — Exames</a></td>
+        <td><code>/Indicadores/Exames</code></td>
+        <td class="estados">default, carregando, vazio, vazioFiltro, erro</td>
+      </tr>
+      <tr>
+        <td><a href="ui-06-produtividade.html">UI-06 — Produtividade médica</a></td>
+        <td><code>/Indicadores/Produtividade</code></td>
+        <td class="estados">default, semPermissao, carregando, vazio, erro</td>
+      </tr>
+      <tr>
+        <td><a href="ui-07-faturamento-convenios.html">UI-07 — Faturamento por convênios</a></td>
+        <td><code>/Indicadores/FaturamentoConvenios</code></td>
+        <td class="estados">default, carregando, vazio, vazioFiltro, erro</td>
+      </tr>
+      <tr>
+        <td><a href="ui-08-faturamento-particular.html">UI-08 — Faturamento particular</a></td>
+        <td><code>/Indicadores/FaturamentoParticular</code></td>
+        <td class="estados">default, carregando, vazio, vazioFiltro, erro</td>
+      </tr>
+      <tr>
+        <td><a href="ui-09-despesas.html">UI-09 — Despesas</a></td>
+        <td><code>/Indicadores/Despesas</code></td>
+        <td class="estados">default, carregando, vazio, erro</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="indice__nota">
+    Cada tela tem uma barra fixa no rodapé para alternar entre os estados. A barra é recurso do wireframe e
+    <strong>não</strong> faz parte da interface do produto.
+  </p>
+
+  <p class="indice__nota">
+    Verificação de responsividade (CA-27): reduza a largura do navegador abaixo de 900 px para ver a grade dos cards e
+    dos gráficos reorganizar em uma coluna.
+  </p>
+
+</div>
+
+</body>
+</html>

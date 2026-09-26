@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-06 — Produtividade médica (wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+</head>
+<body data-tela="UI-06" data-tela-nome="Produtividade médica">
+
+  <header class="topo">
+    <div class="topo__marca">Painel de Indicadores de Saúde</div>
+    <div class="topo__usuario">
+      <span data-estado="default"><span>Carlos Andrade — Administrador</span> <span class="topo__papel">Administrador</span></span>
+      <span data-estado="semPermissao"><span>Ana Souza — Gestor</span> <span class="topo__papel">Gestor</span></span>
+      <a class="topo__link" href="ui-01-login.html">Sair</a>
+    </div>
+  </header>
+
+  <nav class="navegacao" aria-label="Indicadores">
+    <a href="ui-02-painel.html">Painel</a>
+    <a href="ui-03-atendimentos.html">Atendimentos</a>
+    <a href="ui-04-consultas.html">Consultas</a>
+    <a href="ui-05-exames.html">Exames</a>
+    <a href="ui-06-produtividade.html" aria-current="page">Produtividade</a>
+    <a href="ui-07-faturamento-convenios.html">Fatura. convênios</a>
+    <a href="ui-08-faturamento-particular.html">Fatura. particular</a>
+    <a href="ui-09-despesas.html">Despesas</a>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="badge-demo" data-rn="RN-02">
+      <span class="badge-demo__tag">Demo</span>
+      Dados demonstrativos — regras reais pendentes de validação
+    </div>
+
+    <h1 class="cabecalho-secao">Produtividade médica</h1>
+    <p class="descricao-secao">Indicador com a maior lacuna de conhecimento do conjunto: o critério real ainda não foi descoberto.</p>
+
+    <div class="aviso aviso--info" data-rn="RN-30">
+      <span class="aviso__titulo">Métrica provisória: contagem de atendimentos por médico.</span>
+      O que aparece abaixo <strong>não é produtividade</strong>. É o número de atendimentos atribuídos a cada profissional
+      no período, usado como substituto provisório até que o critério real seja descoberto e validado.
+      <span class="lista-rn">(RN-30, RN-33 / CA-18)</span>
+    </div>
+
+    <!-- ============ ESTADO: default (papel Administrador) ============ -->
+    <div data-estado="default">
+
+      <section class="painel" data-rn="RN-07">
+        <p class="painel__titulo">Período</p>
+        <div class="filtros">
+          <div class="campo"><label for="de">De</label><input id="de" type="date" value="2025-10-01"></div>
+          <div class="campo"><label for="ate">Até</label><input id="ate" type="date" value="2026-09-30"></div>
+          <div class="campo">
+            <label for="medico">Médico</label>
+            <select id="medico"><option selected>Todos</option><option>Dra. Marina Alves</option><option>Dr. Rafael Nunes</option><option>Dra. Patrícia Lima</option></select>
+          </div>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="button">Últimos 12 meses</button>
+            <button class="botao" type="button">Aplicar</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador" data-rn="RN-30">
+          <span class="card__rotulo">Atendimentos no período</span>
+          <span class="card__valor">18.402</span>
+          <div class="card__rodape">
+            <span class="variacao variacao--positivo">+4,2%</span>
+            <span class="variacao variacao--neutro">+741</span>
+          </div>
+          <span class="card__link" style="color:var(--wf-alerta)">Métrica provisória — não é produtividade</span>
+        </article>
+        <article class="card">
+          <span class="card__rotulo">Profissionais com atendimento</span>
+          <span class="card__valor">23</span>
+          <div class="card__rodape"><span class="variacao variacao--neutro">no período</span></div>
+        </article>
+      </div>
+
+      <div class="grade grade--larga" style="margin-top:12px">
+        <section class="grafico" data-rn="RN-31">
+          <p class="grafico__titulo">Evolução mensal por profissional</p>
+          <p class="grafico__sub">6 séries — os 6 profissionais de maior volume no período · 12 meses</p>
+          <div class="grafico__regiao" aria-hidden="true">
+            <div class="grafico__barra" style="height:72%"></div>
+            <div class="grafico__barra" style="height:68%"></div>
+            <div class="grafico__barra" style="height:75%"></div>
+            <div class="grafico__barra" style="height:70%"></div>
+            <div class="grafico__barra" style="height:64%"></div>
+            <div class="grafico__barra" style="height:66%"></div>
+            <div class="grafico__barra" style="height:60%"></div>
+            <div class="grafico__barra" style="height:58%"></div>
+            <div class="grafico__barra" style="height:55%"></div>
+            <div class="grafico__barra" style="height:52%"></div>
+            <div class="grafico__barra" style="height:49%"></div>
+            <div class="grafico__barra" style="height:47%"></div>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico de linha com 6 séries — Chart.js local (ADR-006)</p>
+        </section>
+
+        <section class="grafico">
+          <p class="grafico__titulo">Distribuição por profissional</p>
+          <p class="grafico__sub">Top 6 por volume no período</p>
+          <div class="grafico__regiao" aria-hidden="true">
+            <div class="grafico__barra" style="height:100%"></div>
+            <div class="grafico__barra" style="height:86%"></div>
+            <div class="grafico__barra" style="height:74%"></div>
+            <div class="grafico__barra" style="height:63%"></div>
+            <div class="grafico__barra" style="height:52%"></div>
+            <div class="grafico__barra" style="height:41%"></div>
+          </div>
+          <p class="grafico__nota-tech">região do gráfico de barras horizontais</p>
+        </section>
+      </div>
+
+      <div class="anotacao">
+        <span class="anotacao__tag">decisão de UX</span>
+        São 23 profissionais no seed, e 23 linhas no mesmo eixo ficam ilegíveis. O gráfico exibe os <strong>6 de maior
+        volume no período</strong>. O filtro <strong>Médico</strong> acima é o seletor: ao escolher um profissional, o
+        gráfico passa a mostrar a série dele isolada. <span class="lista-rn">(RN-31)</span>
+      </div>
+
+      <h2 class="cabecalho-secao">Detalhamento por profissional</h2>
+      <p class="descricao-secao">Os 6 profissionais de maior volume no período, com a série mensal.</p>
+      <div class="painel" style="padding:0">
+        <table class="tabela tabela--compacta" data-rn="RN-30">
+          <thead><tr><th>Médico</th><th class="num">Out</th><th class="num">Nov</th><th class="num">Dez</th><th class="num">…</th><th class="num">Set</th><th class="num">Total</th></tr></thead>
+          <tbody>
+            <tr><td>Dra. Marina Alves</td><td class="num">164</td><td class="num">171</td><td class="num">158</td><td class="num">…</td><td class="num">149</td><td class="num">2.041</td></tr>
+            <tr><td>Dr. Rafael Nunes</td><td class="num">142</td><td class="num">138</td><td class="num">151</td><td class="num">…</td><td class="num">127</td><td class="num">1.742</td></tr>
+            <tr><td>Dra. Patrícia Lima</td><td class="num">121</td><td class="num">133</td><td class="num">119</td><td class="num">…</td><td class="num">134</td><td class="num">1.508</td></tr>
+            <tr><td>Dr. Thiago Cardoso</td><td class="num">98</td><td class="num">104</td><td class="num">112</td><td class="num">…</td><td class="num">101</td><td class="num">1.264</td></tr>
+            <tr><td>Dra. Camila Rocha</td><td class="num">87</td><td class="num">92</td><td class="num">79</td><td class="num">…</td><td class="num">95</td><td class="num">1.083</td></tr>
+            <tr><td>Dr. Paulo Ferraz</td><td class="num">79</td><td class="num">84</td><td class="num">76</td><td class="num">…</td><td class="num">88</td><td class="num">921</td></tr>
+          </tbody>
+          <tfoot><tr><td>Total (23 profissionais)</td><td class="num">1.612</td><td class="num">1.588</td><td class="num">1.504</td><td class="num">…</td><td class="num">1.498</td><td class="num">18.402</td></tr></tfoot>
+        </table>
+      </div>
+
+      <h2 class="cabecalho-secao" id="repasse" data-rn="RN-32">Repasse por profissional</h2>
+      <p class="descricao-secao">Visível apenas para o papel <strong>Administrador</strong>. <span class="lista-rn">(RN-18 / CA-20)</span></p>
+      <div class="painel" style="padding:0">
+        <table class="tabela tabela--compacta">
+          <thead><tr><th>Médico</th><th class="num">Repasse no período</th><th class="num">Meses de referência</th></tr></thead>
+          <tbody>
+            <tr><td>Dra. Marina Alves</td><td class="num">R$ 38.400,00</td><td class="num">12</td></tr>
+            <tr><td>Dr. Rafael Nunes</td><td class="num">R$ 31.900,00</td><td class="num">12</td></tr>
+            <tr><td>Dra. Patrícia Lima</td><td class="num">R$ 27.650,00</td><td class="num">12</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="anotacao">
+        <span class="anotacao__tag">RN-35</span>
+        A competência de repasse é <span class="lista-rn">[PENDENTE]</span>. O número acima é do seed demonstrativo e não
+        representa a regra real de apuração.
+      </div>
+
+    </div>
+
+    <!-- ============ ESTADO: semPermissao (papel Gestor) ============ -->
+    <div data-estado="semPermissao">
+      <section class="painel" data-rn="RN-07">
+        <p class="painel__titulo">Período</p>
+        <div class="filtros">
+          <div class="campo"><label for="de-p">De</label><input id="de-p" type="date" value="2025-10-01"></div>
+          <div class="campo"><label for="ate-p">Até</label><input id="ate-p" type="date" value="2026-09-30"></div>
+          <div class="botoes"><button class="botao" type="button">Aplicar</button></div>
+        </div>
+      </section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <article class="card card--indicador">
+          <span class="card__rotulo">Atendimentos no período</span>
+          <span class="card__valor">18.402</span>
+          <div class="card__rodape"><span class="variacao variacao--positivo">+4,2%</span><span class="variacao variacao--neutro">+741</span></div>
+          <span class="card__link" style="color:var(--wf-alerta)">Métrica provisória — não é produtividade</span>
+        </article>
+      </div>
+      <div class="painel" style="padding:0">
+        <table class="tabela tabela--compacta">
+          <thead><tr><th>Médico</th><th class="num">Total no período</th></tr></thead>
+          <tbody>
+            <tr><td>Dra. Marina Alves</td><td class="num">2.041</td></tr>
+            <tr><td>Dr. Rafael Nunes</td><td class="num">1.742</td></tr>
+            <tr><td>Dra. Patrícia Lima</td><td class="num">1.508</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2 class="cabecalho-secao">Repasse por profissional</h2>
+      <div class="aviso aviso--restrito" data-rn="RN-18">
+        <span class="aviso__titulo">Acesso restrito.</span>
+        Os valores de repasse são visíveis apenas para o papel <strong>Administrador</strong>. Nenhum valor é exibido.
+        <span class="lista-rn">(RN-18 / CA-11)</span>
+      </div>
+      <div class="anotacao">
+        <span class="anotacao__tag">decisão de UX</span>
+        A restrição é do <strong>elemento</strong>, não da tela: o gestor continua vendo a produção por profissional e
+        perde apenas o repasse. Ocultar a seção inteira esconderia que o dado existe.
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: carregando ============ -->
+    <div data-estado="carregando">
+      <div class="aviso aviso--info"><span class="aviso__titulo">Métrica provisória: contagem de atendimentos por médico.</span>Não é produtividade.</div>
+      <section class="painel"><div class="esqueleto esqueleto--linha" style="width:260px"></div></section>
+      <div class="grade" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+        <div class="card"><div class="esqueleto esqueleto--linha" style="width:55%"></div><div class="esqueleto esqueleto--valor"></div></div>
+      </div>
+      <div class="grade grade--larga" style="margin-top:12px">
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+        <div class="grafico"><div class="esqueleto esqueleto--grafico"></div></div>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: vazio ============ -->
+    <div data-estado="vazio">
+      <div class="aviso aviso--info"><span class="aviso__titulo">Métrica provisória: contagem de atendimentos por médico.</span>Não é produtividade.</div>
+      <section class="painel">
+        <p class="painel__titulo">Período</p>
+        <div class="filtros">
+          <div class="campo"><label for="de-v">De</label><input id="de-v" type="date" value="2019-01-01"></div>
+          <div class="campo"><label for="ate-v">Até</label><input id="ate-v" type="date" value="2019-01-31"></div>
+          <div class="botoes"><button class="botao" type="button">Aplicar</button></div>
+        </div>
+      </section>
+      <div class="estado-bloco">
+        <p class="estado-bloco__titulo">Nenhum atendimento no período</p>
+        <p class="estado-bloco__texto">Não há produção a distribuir entre profissionais. O seed demonstrativo não cobre janeiro de 2019.</p>
+        <button class="botao botao--secundario" type="button">Voltar para os últimos 12 meses</button>
+      </div>
+    </div>
+
+    <!-- ============ ESTADO: erro ============ -->
+    <div data-estado="erro">
+      <div class="estado-bloco estado-bloco--erro">
+        <p class="estado-bloco__titulo">Não foi possível carregar a produção por profissional</p>
+        <p class="estado-bloco__texto">A consulta à fonte de dados falhou. Período e filtro de médico foram preservados.</p>
+        <button class="botao" type="button">Tentar novamente</button>
+      </div>
+    </div>
+
+  </main>
+
+<script src="assets/estados.js"></script>
+</body>
+</html>
